@@ -29,6 +29,16 @@ class Kohana_Piwik_Api {
 	}
 
 	/**
+	 * Get the piwik url being used
+	 *
+	 * @return  string
+	 */
+	public function url()
+	{
+		return $this->_config->get('url');
+	}
+
+	/**
 	 * Call the API using a method with optional data.
 	 *
 	 * @param  string  $method
