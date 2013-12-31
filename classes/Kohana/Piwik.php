@@ -19,8 +19,11 @@ class Kohana_Piwik {
 		$t = new Piwik_Tracker(
 			$piwik_config->get('idSite'), $piwik_config->get('url'));
 
-		// Shell exec?
-		$t->shell_exec = $piwik_config->get('shell_exec', FALSE);
+		// Shell mode?
+		$t->shell_mode = $piwik_config->get('shell_mode', NULL);
+
+		// Binary path
+		$t->binary_path = $piwik_config->get('binary_path', NULL);
 
 		// Has auth token
 		if ($token_auth = $piwik_config->get('token_auth'))
