@@ -15,9 +15,12 @@ class Kohana_Piwik {
 			$piwik_config = Kohana::$config->load('piwik');
 		}
 
-		// Create new piwik instance
-		$t = new PiwikTracker(
+		// Create new piwik instance using our custom instance class
+		$t = new Piwik_Tracker(
 			$piwik_config->get('idSite'), $piwik_config->get('url'));
+
+		// Shell exec?
+		$t->shell_exec = $piwik_config->get('shell_exec', FALSE);
 
 		// Has auth token
 		if ($token_auth = $piwik_config->get('token_auth'))
