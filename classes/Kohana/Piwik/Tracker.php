@@ -66,8 +66,8 @@ class Kohana_Piwik_Tracker extends PiwikTracker {
             // only supports JSON data
             if (!empty($data)) {
                 $cmd .= "-H 'Cookie: ".$this->requestCookie."' ";
-                $cmd .= "-H 'Content-Type: application/json ";
-                $cmd .= "-H 'Expect: ";
+                $cmd .= "-H 'Content-Type: application/json' ";
+                $cmd .= "-H 'Expect: ' ";
             }
 
             $cmd .= " > /dev/null 2>&1 &";

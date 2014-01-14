@@ -8,6 +8,7 @@ return array(
 
 	// Run through shell?  Possible values: php or curl. For curl the server
 	// needs curl installed, for php make sure setting the binary_path(piwik.php)
+	// WARNING: php mode does not support bulk processing
 	'shell_mode'    => NULL,
 	'binary_path'   => NULL,
 );
