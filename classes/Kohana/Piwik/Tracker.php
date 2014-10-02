@@ -20,7 +20,8 @@ class Kohana_Piwik_Tracker extends PiwikTracker {
 	/**
 	 * See original class. Added shell param to use shell in background without
 	 * return data. This may speed up requests!! Requires curl on the server
-	 * to be installed.
+	 * to be installed. Makes sure php will not wait for the request to
+     * complete
 	 */
     protected function sendRequest($url, $method = 'GET', $data = null, $force = false)
     {
@@ -44,15 +45,10 @@ class Kohana_Piwik_Tracker extends PiwikTracker {
 
             $response = '';
 
-            if (!$this->cookieSupport) {
-                $this->requestCookie = '';
-            }
-
             $cmd = "curl -H 'Content-Type: application/json' "
                 . "-m ".$this->requestTimeout." "
                 . "-H 'User-Agent: ".$this->userAgent."' "
                 . "-H 'Accept-Language: ".$this->acceptLanguage."' "
-                . "-H 'Cookie: ".$this->requestCookie."' "
                 . " -d '" . $data . "' " . "'" . $url . "' ";
 
             switch ($method) {
@@ -65,7 +61,6 @@ class Kohana_Piwik_Tracker extends PiwikTracker {
 
             // only supports JSON data
             if (!empty($data)) {
-                $cmd .= "-H 'Cookie: ".$this->requestCookie."' ";
                 $cmd .= "-H 'Content-Type: application/json' ";
                 $cmd .= "-H 'Expect: ' ";
             }
@@ -94,5 +89,5 @@ class Kohana_Piwik_Tracker extends PiwikTracker {
 
         // Return nothing
         return;
-}
+    }
 }
