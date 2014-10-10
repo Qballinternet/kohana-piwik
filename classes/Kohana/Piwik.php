@@ -30,6 +30,11 @@ class Kohana_Piwik {
 		{
 			$t->setTokenAuth($token_auth);
 		}
+		// Disable cookies?
+		if ($piwik_config->get('disable_cookies'))
+		{
+			$t->disableCookieSupport();
+		}
 
 		// Return tracker
 		return $t;

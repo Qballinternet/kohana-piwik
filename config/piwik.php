@@ -6,6 +6,8 @@ return array(
 	'idSite' => 1,	// id of tracked site
 	'token_auth' => '',	// auth token
 
+	'disable_cookies' => FALSE,
+
 	// Run through shell?  Possible values: php or curl. For curl the server
 	// needs curl installed, for php make sure setting the binary_path(piwik.php)
 	// These options make sure php will not wait for the request to complete.
