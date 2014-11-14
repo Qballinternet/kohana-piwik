@@ -66,7 +66,25 @@ class Kohana_Piwik_Tracker extends PiwikTracker {
             }
 
             $cmd .= " > /dev/null 2>&1 &";
-            exec($cmd);
+            try
+            {
+                exec($cmd);
+            }
+            catch (\Exception $ex)
+            {
+                // Is fork error
+                if (preg_match('/unable to fork/i', $ex->getMessage()))
+                {
+                   // Log error and just continue
+                   Log::instance()->add(Log::ERROR, $ex->getMessage());
+                }
+                // Other error
+                else
+                {
+                    // Rethrow error
+                    throw $ex;
+                }
+            }
         }
         // php call
         else
